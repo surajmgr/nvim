@@ -809,12 +809,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
         opts = {},
       },
@@ -846,6 +846,18 @@ require('lazy').setup({
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
+        ['<CR>'] = {
+          'accept',
+          'fallback',
+        },
+        ['<C-j>'] = {
+          'select_next',
+          'fallback',
+        },
+        ['<C-k>'] = {
+          'select_prev',
+          'fallback',
+        },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -858,15 +870,47 @@ require('lazy').setup({
       },
 
       completion = {
+        accept = { auto_brackets = { enabled = true } },
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = false, auto_show_delay_ms = 500, treesitter_highlighting = true, window = { border = 'rounded' } },
+
+        menu = {
+          border = 'rounded',
+
+          draw = {
+            columns = {
+              {
+                'label',
+                'label_description',
+                'source_name',
+                gap = 1,
+                truncate = true,
+                max_width = 50,
+              },
+            },
+            components = {
+              source_name = {
+                text = function(ctx)
+                  return '[' .. ctx.source_name .. ']'
+                end,
+              },
+            },
+          },
+        },
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+        },
+      },
+      cmdline = {
+        completion = {
+          menu = {
+            auto_show = true,
+          },
         },
       },
 
@@ -882,7 +926,15 @@ require('lazy').setup({
       fuzzy = { implementation = 'lua' },
 
       -- Shows a signature help window while you type arguments for a function
-      signature = { enabled = true },
+      signature = {
+        enabled = true,
+        trigger = {
+          enabled = true,
+        },
+        window = {
+          border = 'rounded',
+        },
+      },
     },
   },
 
