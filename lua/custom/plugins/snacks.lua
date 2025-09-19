@@ -55,14 +55,14 @@ return {
       enabled = true,
     },
     lazygit = { enabled = true },
-    explorer = { enabled = true },
+    explorer = { enabled = true, hidden = true },
     indent = { enabled = false },
     input = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = { enabled = true, hidden = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = true },
@@ -103,6 +103,14 @@ return {
         Snacks.explorer()
       end,
       desc = 'File Explorer',
+      mode = { 'n', 'v' },
+    },
+    {
+      '<leader>\\',
+      function()
+        Snacks.explorer.reveal()
+      end,
+      desc = 'Reveal in Explorer',
       mode = { 'n', 'v' },
     },
     -- find
