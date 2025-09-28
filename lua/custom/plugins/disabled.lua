@@ -1,3 +1,3 @@
 return {
-  { 'Exafunction/windsurf.vim', enabled = false },
+  { 'github/copilot.vim', enabled = false },
 }
