@@ -119,26 +119,26 @@ white = "#F5F5F5" # Slightly off-white for brightness
 
 [font]
 # Font size
-size = 10
+size = 18
 
 # Normal font
 [font.normal]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Regular"
 
 # Bold font
 [font.bold]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Bold"
 
 # Italic font
 [font.italic]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Italic"
 
 # Bold italic font
 [font.bold_italic]
-family = "Hack"
+family = "Hack Nerd Font"
 style = "Bold Italic"
 
 # Font offset for fine-tuning position
